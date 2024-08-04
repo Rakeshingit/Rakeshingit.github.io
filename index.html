@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="input_cont">
-            <input type="text" placeholder="Enter a pokemon name" id="pokeName">
-            <button onclick="getPokemon()" id="btn">Get</button>
-        </div>
-        <div class="pokeinfo">
-            <img src="" alt="Pokemon_picture" id="sprite" style="display: none;">
-        </div>
+      <div id="err"><p>Unable to get that one!!!</p></div>
+      <div class="input_cont">
+        <input type="text" placeholder="Enter a pokemon name" id="pokeName" />
+        <button onclick="getPokemon()" id="btn">Get</button>
+        <div class="suggest"></div>
+      </div>
+
+      <div class="pokeinfo">
+        <img src="" alt="Pokemon_picture" id="sprite" style="display: none" />
+      </div>
     </div>
-</body>
-<script src="index.js"></script>
+  </body>
+  <script src="index.js"></script>
 </html>
