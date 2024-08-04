@@ -1,0 +1,57 @@
+:root{
+    --btnbg: tomato;
+}
+
+*{
+    margin: 0;
+}
+
+.container{
+    min-height: 11rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* row-gap: 1rem; */
+}
+
+#btn{
+    color: #ffffff;
+    background-color: var(--btnbg);
+    padding: .5rem 1rem;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+    border: 1px solid black;
+
+}
+#btn:active{
+    background-color: hsla(9, 100%, 64%, 0.614);
+}
+
+#btn:focus{
+    background-color: hsla(9, 100%, 64%, 0.614);
+}
+
+.input_cont{
+    /* margin-top: .3rem; */
+    display: flex;
+    justify-content: center;
+}
+
+#pokeName{
+    border: 1px solid black;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+}
+
+.pokeinfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    min-height: 1rem;
+    max-width: 70%;
+    /* border: 1px solid red; */
+}
