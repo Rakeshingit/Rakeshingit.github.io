@@ -1,12 +1,44 @@
-const suggestionData = {
-  pi: ["pikachu", "pichu", "pidgeotto", "pignite", "pikipek"],
-  ch: ["charmander", "charizard"],
-  bu: ["bulbasaur", "budew", "buizel", "bunnelby", "buneary"],
-  me: ["meditite", "meowth", "mew", "mewtwo", "melmetal", "meltan", "meganium"],
-};
+window.onload = pokeName.focus();
+
+const suggestionData = [
+  "pikachu",
+  "pichu",
+  "pidgeotto",
+  "pignite",
+  "pikipek",
+  "charmander",
+  "charizard",
+  "bulbasaur",
+  "budew",
+  "buizel",
+  "bunnelby",
+  "buneary",
+  "meditite",
+  "meowth",
+  "mew",
+  "mewtwo",
+  "melmetal",
+  "meltan",
+  "meganium",
+];
 
 const err = document.getElementById("err");
 const suggest = document.querySelector(".suggest");
+
+let searchKey = "";
+function suggestor(e) {
+  searchKey = e.target.value;
+  if (searchKey.length == 0) {
+    removeSuggest();
+  }
+  if (searchKey.length > 0) {
+    removeSuggest();
+    const temparr = suggestionData.filter((item) => item.startsWith(searchKey));
+    suggest.style.display = "block";
+    console.log(suggest.childElementCount);
+    createSuggestions(temparr);
+  }
+}
 
 pokeName.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
@@ -16,28 +48,8 @@ pokeName.addEventListener("keypress", function (event) {
   }
 });
 
-// pokeName.addEventListener("focus", function () {
-//   suggest.style.display = "block";
-// });
-// pokeName.addEventListener("blur", removeSuggest);
-
-let searchKey;
-
-pokeName.addEventListener("input", function () {
-  let query = this.value;
-  if (query.length === 0 || query.length <= 1) {
-    suggest.style.display = "none";
-    return;
-  }
-  if (query[0] + query[1] === searchKey) return;
-
-  searchKey = query[0] + query[1];
-
-  suggest.style.display = "block";
-
-  const suggestion = suggestionData[searchKey] || [];
-
-  createSuggestions(suggestion);
+pokeName.addEventListener("input", function (event) {
+  suggestor(event);
 });
 
 async function getPokemon() {
@@ -45,7 +57,6 @@ async function getPokemon() {
   let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
   if (!response.ok) {
     err.style.visibility = "visible";
-    // window.alert("Not found");
     setTimeout(() => {
       err.style.visibility = "hidden";
     }, 3000);
@@ -73,6 +84,7 @@ window.onload = adjustWidth;
 function createSuggestions(items) {
   items.forEach((item) => {
     let list = document.createElement("li");
+    list.id = "suggest_child";
     list.textContent = item;
     list.addEventListener("click", function () {
       console.log(item);
